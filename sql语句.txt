@@ -1,0 +1,40 @@
+--1.png为输入，2、3、4.png为表内容
+--创建student、subject、score三张表
+CREATE TABLE student  (
+  id varchar(3),
+  name varchar(10)  NOT NULL,
+  age int NOT NULL,
+  sex varchar(10) NOT NULL,
+  PRIMARY KEY (id)
+);
+create table subject(
+  id int,
+  subject varchar(15) not null,
+  teacher varchar(20) not null,
+  description  varchar(30) not null,
+  primary key (id)
+);
+create table score(
+ id int,
+ student_id varchar(3) not null,
+ subject_id int not null,
+ score number(3,1) not null,
+ primary key(id),
+ foreign key(student_id) references student(id),
+ foreign key(subject_id) references subject(id)
+ );
+ 
+--给每张表插入相应的数据 
+ insert into student(id,name,age,sex) values ('001','张三',18,'男');
+ insert into student(id,name,age,sex) values ('002','李四',20,'女');
+ insert into subject(id,subject,teacher,description) values (1001,'语文','王老师','本次考试比较简单');
+ insert into subject(id,subject,teacher,description) values (1002,'数学','刘老师','本次考试比较难');
+ insert into score(id,student_id,subject_id,score) values (1,'001',1001,80);
+ insert into score(id,student_id,subject_id,score) values (2,'002',1002,60);
+ insert into score(id,student_id,subject_id,score) values (3,'001',1001,70);
+ insert into score(id,student_id,subject_id,score) values (4,'002',1002,60.5);
+ 
+--显示三张表内容 
+ select * from student;
+ select * from subject;
+ select * from score;
